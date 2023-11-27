@@ -5,6 +5,7 @@
 using namespace cv;
 using namespace std;
 
+
 void applyFilterSequential(Mat& inputImage, Mat& outputImage) {
     // Verificar si las dimensiones de entrada coinciden con las de salida
     if (inputImage.size() != outputImage.size()) {
@@ -23,11 +24,12 @@ void applyFilterSequential(Mat& inputImage, Mat& outputImage) {
             Vec3b pixel = inputImage.at<Vec3b>(r, c);
 
             // Calcular el valor de luminosidad y asignarlo al píxel de salida
-            uchar grayValue = static_cast<uchar>(0.299 * pixel[2] + 0.587 * pixel[1] + 0.114 * pixel[0]);
+            uchar grayValue = static_cast<uchar>(0.21 * pixel[2] + 0.72 * pixel[1] + 0.07 * pixel[0]);
             outputImage.at<uchar>(r, c) = grayValue;
         }
     }
 }
+
 
 int main(int argc, char** argv) {
     // Parsear argumentos de entrada
