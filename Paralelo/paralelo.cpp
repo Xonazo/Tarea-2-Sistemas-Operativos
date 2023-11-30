@@ -8,6 +8,7 @@ using namespace cv;
 using namespace std;
 
 void applyFilterThreaded(Mat& inputImage, Mat& outputImage, int startRow, int endRow) {
+    // Se comienza a iterar por cada pixel de la imagen
     for (int r = startRow; r < endRow; ++r) {
         for (int c = 0; c < inputImage.cols; ++c) {
             Vec3b pixel = inputImage.at<Vec3b>(r, c);
@@ -17,17 +18,21 @@ void applyFilterThreaded(Mat& inputImage, Mat& outputImage, int startRow, int en
     }
 }
 
+// Se aplica el filtro para cada hilo
 void applyFilterParallel(Mat& inputImage, Mat& outputImage, int numThreads) {
+    // Se verifica que las dimensiones de entrada y salida coincidan
     int rows = inputImage.rows;
     int chunkSize = rows / numThreads;
     vector<thread> threads;
 
+    // Se crean los hilos
     for (int i = 0; i < numThreads; ++i) {
         int startRow = i * chunkSize;
         int endRow = (i == numThreads - 1) ? rows : (i + 1) * chunkSize;
         threads.emplace_back(applyFilterThreaded, ref(inputImage), ref(outputImage), startRow, endRow);
     }
 
+    // Se espera a que los hilos terminen
     for (auto& t : threads) {
         t.join();
     }
@@ -50,8 +55,10 @@ int main(int argc, char** argv) {
 
     int numThreads = atoi(argv[3]);
 
+    // Se mide el tiempo de ejecucion
     auto start = chrono::high_resolution_clock::now();
 
+    // Se aplica el filtro para cada hilo
     applyFilterParallel(inputImage, outputImage, numThreads);
 
     auto end = chrono::high_resolution_clock::now();
@@ -59,6 +66,7 @@ int main(int argc, char** argv) {
 
     imwrite(argv[2], outputImage);
 
+    // Se muestra el tiempo de ejecucion
     cout << "Tiempo de ejecución: " << duration.count() << " segundos" << endl;
 
     return 0;
