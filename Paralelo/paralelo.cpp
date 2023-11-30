@@ -7,17 +7,11 @@
 using namespace cv;
 using namespace std;
 
-// Declarar un mutex global
-std::mutex mtx;
-
 void applyFilterThreaded(Mat& inputImage, Mat& outputImage, int startRow, int endRow) {
     for (int r = startRow; r < endRow; ++r) {
         for (int c = 0; c < inputImage.cols; ++c) {
             Vec3b pixel = inputImage.at<Vec3b>(r, c);
             uchar grayValue = static_cast<uchar>(0.299 * pixel[2] + 0.587 * pixel[1] + 0.114 * pixel[0]);
-
-            // Bloquear la región crítica antes de modificar outputImage
-            std::lock_guard<std::mutex> lock(mtx);
             outputImage.at<uchar>(r, c) = grayValue;
         }
     }
@@ -58,7 +52,6 @@ int main(int argc, char** argv) {
 
     auto start = chrono::high_resolution_clock::now();
 
-    // Aplicar el filtro de manera paralela
     applyFilterParallel(inputImage, outputImage, numThreads);
 
     auto end = chrono::high_resolution_clock::now();
@@ -70,3 +63,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+

@@ -14,23 +14,27 @@ void applyFilterParallel(Mat& inputImage, Mat& outputImage) {
     int rows = inputImage.rows;
     int cols = inputImage.cols;
 
-    #pragma omp parallel for
-    for (int r = 0; r < rows; ++r) {
-        for (int c = 0; c < cols; ++c) {
-            Vec3b pixel = inputImage.at<Vec3b>(r, c);
+    #pragma omp parallel
+    {
+        int numThreads = omp_get_num_threads();
+        int threadId = omp_get_thread_num();
+        int chunkSize = rows / numThreads;
+        int startRow = threadId * chunkSize;
+        int endRow = (threadId == numThreads - 1) ? rows : (threadId + 1) * chunkSize;
 
-            uchar grayValue = static_cast<uchar>(0.21 * pixel[2] + 0.72 * pixel[1] + 0.07 * pixel[0]);
-
-            #pragma omp critical
-            outputImage.at<uchar>(r, c) = grayValue;
+        for (int r = startRow; r < endRow; ++r) {
+            for (int c = 0; c < cols; ++c) {
+                Vec3b pixel = inputImage.at<Vec3b>(r, c);
+                uchar grayValue = static_cast<uchar>(0.21 * pixel[2] + 0.72 * pixel[1] + 0.07 * pixel[0]);
+                outputImage.at<uchar>(r, c) = grayValue;
+            }
         }
     }
 }
 
-
 int main(int argc, char** argv) {
-    if (argc != 3) {
-        cerr << "Uso: " << argv[0] << " <imagen_entrada> <imagen_salida>" << endl;
+    if (argc != 4) {
+        cerr << "Uso: " << argv[0] << " <imagen_entrada> <imagen_salida> <num_hilos>" << endl;
         return -1;
     }
 
@@ -43,7 +47,11 @@ int main(int argc, char** argv) {
 
     Mat outputImage(inputImage.rows, inputImage.cols, CV_8UC1);
 
+    int numThreads = atoi(argv[3]);
+
     auto start = chrono::high_resolution_clock::now();
+
+    omp_set_num_threads(numThreads);
 
     applyFilterParallel(inputImage, outputImage);
 
@@ -56,3 +64,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
