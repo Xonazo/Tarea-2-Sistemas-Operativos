@@ -1,8 +1,8 @@
 # Tarea 2 Sistemas operativos
 
 ## Integrantes
-- [ ] 20.514.683-0 - **Edison Muñoz**
-- [ ] 20.731.242-8 - **Domingo Vega**
+-  20.514.683-0 - **Edison Muñoz**
+-  20.731.242-8 - **Domingo Vega**
 - Ingenieria Civil Informatica - Universidad del Bío-Bío.
 
 ## Descripción
