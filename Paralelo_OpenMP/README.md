@@ -4,9 +4,9 @@
 * Para realizar la compilacion del programa "paraleloOpenMP.cpp", se debe entrar en la carpeta que corresponde a Paralelo_OpenMP, donde debera escribir y ejecutar el comando "make" en la terminal, el cual le creara un archivo ejecutable dentro de la misma carpeta.
 
 ## Ejecución
-* Para realizar la ejecucion del programa recientemente creado con el comando "make", se debe escribir y ejecutar el comando "./paralelo_openMP" en la terminal, seguido de los parametros de entrada y salida y el numero de hebras que desea utilizar. Quedando de la siguiente manera:
+* Para realizar la ejecucion del programa recientemente creado con el comando "make", se debe escribir y ejecutar el comando "./openejecutable" en la terminal, seguido de los parametros de entrada y salida y el numero de hebras que desea utilizar. Quedando de la siguiente manera:
 ```
-./paralelo_openMP <inputfile> <outputfile> <numhebras>
+./openejecutable <inputfile> <outputfile> <numhebras>
 ```
 
 ## Eliminación de archivos
