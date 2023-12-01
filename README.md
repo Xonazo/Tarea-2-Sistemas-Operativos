@@ -3,7 +3,7 @@
 ## Integrantes
 - **Edison Muñoz** -  20.514.683-0
 - **Domingo Vega** -  20.731.242-8
-- Ingenieria Civil Informatica - Universidad del Bío-Bío.
+- **Ingenieria Civil Informatica** - **Universidad del Bío-Bío.**
 
 ## Descripción
 Supongamos que tiene una imagen a color representada como una matriz bidimensional de pıxeles.
