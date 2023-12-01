@@ -28,7 +28,7 @@ El enfoque paralelo puede consistir en dividir la imagen en varias partes y asig
 * Los programas deben compilar para ser revisados.
  ## Importante
 * **Para las pruebas se recomienda usar la imagen "prueba.jpg", la cual es una imagen modificada para que pese mas.**
-* **En caso de usar otras imagenes estan deben estar en formato ".jpg".**
+* **En caso de usar otras imagenes, estas deben estar en formato ".jpg".**
 
 ## Parametros de entrada
 * Nombre imagen a color a procesar.
