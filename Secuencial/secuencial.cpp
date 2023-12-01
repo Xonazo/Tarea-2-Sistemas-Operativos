@@ -24,7 +24,7 @@ void applyFilterSequential(Mat& inputImage, Mat& outputImage) {
             Vec3b pixel = inputImage.at<Vec3b>(r, c);
 
             // Calcular el valor de luminosidad y asignarlo al píxel de salida
-            uchar grayValue = static_cast<uchar>(0.21 * pixel[2] + 0.72 * pixel[1] + 0.07 * pixel[0]);
+            uchar grayValue = static_cast<uchar>(0.3 * pixel[2] + 0.59 * pixel[1] + 0.11 * pixel[0]);
             outputImage.at<uchar>(r, c) = grayValue;
         }
     }
