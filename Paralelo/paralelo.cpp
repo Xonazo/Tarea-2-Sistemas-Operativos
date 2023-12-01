@@ -12,7 +12,7 @@ void applyFilterThreaded(Mat& inputImage, Mat& outputImage, int startRow, int en
     for (int r = startRow; r < endRow; ++r) {
         for (int c = 0; c < inputImage.cols; ++c) {
             Vec3b pixel = inputImage.at<Vec3b>(r, c);
-            uchar grayValue = static_cast<uchar>(0.299 * pixel[2] + 0.587 * pixel[1] + 0.114 * pixel[0]);
+            uchar grayValue = static_cast<uchar>(0.3 * pixel[2] + 0.59 * pixel[1] + 0.11 * pixel[0]);
             outputImage.at<uchar>(r, c) = grayValue;
         }
     }
