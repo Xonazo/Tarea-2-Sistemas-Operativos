@@ -26,7 +26,8 @@ El enfoque paralelo puede consistir en dividir la imagen en varias partes y asig
 * Para medir tiempo de ejecucion utilice la clase chrono5.
 * La tarea es en parejas.
 * Los programas deben compilar para ser revisados.
-* **Para las pruebas se recomienda usar la imagen prueba.jpg**
+* **_ _Para las pruebas se recomienda usar la imagen "prueba.jpg", la cual es una imagen modificada para que pese mas._ _ **
+* *En caso de usar otras imagenes estan deben estar en formato ".jpg"* *
 
 ## Parametros de entrada
 * Nombre imagen a color a procesar.
@@ -42,6 +43,7 @@ El enfoque paralelo puede consistir en dividir la imagen en varias partes y asig
 ## Requisitos
 * Tener instalado el compilador de C++.
 * Tener instalado el programa make.
+* Tener instalado OpenCV3 o libopencv-dev dependiendo de su sistema.
 
 ## Como instalar el compilador de C++
 * Para instalar el compilador de C++, se debe escribir y ejecutar el siguiente comando en la terminal:
