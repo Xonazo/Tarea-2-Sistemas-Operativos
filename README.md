@@ -26,8 +26,9 @@ El enfoque paralelo puede consistir en dividir la imagen en varias partes y asig
 * Para medir tiempo de ejecucion utilice la clase chrono5.
 * La tarea es en parejas.
 * Los programas deben compilar para ser revisados.
-* **_ _Para las pruebas se recomienda usar la imagen "prueba.jpg", la cual es una imagen modificada para que pese mas._ _ **
-* *En caso de usar otras imagenes estan deben estar en formato ".jpg"* *
+  ###Importante
+* *Para las pruebas se recomienda usar la imagen "prueba.jpg", la cual es una imagen modificada para que pese mas. **
+* En caso de usar otras imagenes estan deben estar en formato ".jpg"*
 
 ## Parametros de entrada
 * Nombre imagen a color a procesar.
