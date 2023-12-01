@@ -22,7 +22,7 @@ El enfoque paralelo puede consistir en dividir la imagen en varias partes y asig
 * Debe utilizar un archivo Makefile por cada version (secuencial y las paralelas) para la compilacion mediante el comando make. Organice su proyecto como sea mas conveniente.
 * Utilizar imagenes de prueba de gran tamaño (megas o gigabytes) para apreciar mejor las ventajas de la paralelizacion.
 * Realizar pruebas utilizando difentes numeros de hebras para obtener medidas de rendimiento.
-* No olvidar un archivo README por cada versi´on con las intrucciones para compilar y ejecutar los programas.
+* No olvidar un archivo README por cada version con las intrucciones para compilar y ejecutar los programas.
 * Para medir tiempo de ejecucion utilice la clase chrono5.
 * La tarea es en parejas.
 * Los programas deben compilar para ser revisados.
