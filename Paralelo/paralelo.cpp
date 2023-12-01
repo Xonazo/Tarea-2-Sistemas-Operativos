@@ -7,20 +7,24 @@
 using namespace cv;
 using namespace std;
 
+
+//Funcion que aplicara el filtro a la imagen
 void applyFilterThreaded(Mat& inputImage, Mat& outputImage, int startRow, int endRow) {
     // Se comienza a iterar por cada pixel de la imagen
     for (int r = startRow; r < endRow; ++r) {
         for (int c = 0; c < inputImage.cols; ++c) {
+            // Se obtiene el valor del pixel en formato BGR
             Vec3b pixel = inputImage.at<Vec3b>(r, c);
+            // Se calcula el valor del pixel en la imagen de salida
             uchar grayValue = static_cast<uchar>(0.3 * pixel[2] + 0.59 * pixel[1] + 0.11 * pixel[0]);
+            // Se asigna el valor del pixel en la imagen de salida
             outputImage.at<uchar>(r, c) = grayValue;
         }
     }
 }
 
-// Se aplica el filtro para cada hilo
+//Funcion que divide la imagen en hilos
 void applyFilterParallel(Mat& inputImage, Mat& outputImage, int numThreads) {
-    // Se verifica que las dimensiones de entrada y salida coincidan
     int rows = inputImage.rows;
     int chunkSize = rows / numThreads;
     vector<thread> threads;
@@ -29,6 +33,7 @@ void applyFilterParallel(Mat& inputImage, Mat& outputImage, int numThreads) {
     for (int i = 0; i < numThreads; ++i) {
         int startRow = i * chunkSize;
         int endRow = (i == numThreads - 1) ? rows : (i + 1) * chunkSize;
+        //Se crea un hilo y se le pasa la funcion que aplicara el filtro
         threads.emplace_back(applyFilterThreaded, ref(inputImage), ref(outputImage), startRow, endRow);
     }
 
@@ -39,31 +44,40 @@ void applyFilterParallel(Mat& inputImage, Mat& outputImage, int numThreads) {
 }
 
 int main(int argc, char** argv) {
+    //Verificacion de los parametros de entrada
     if (argc != 4) {
         cerr << "Uso: " << argv[0] << " <imagen_entrada> <imagen_salida> <num_hilos>" << endl;
         return -1;
     }
 
+
+    //Leer la imagen de entrada
     Mat inputImage = imread(argv[1], IMREAD_COLOR);
 
+
+    //Error si no se puede leer la imagen
     if (inputImage.empty()) {
         cerr << "Error al leer la imagen de entrada." << endl;
         return -1;
     }
 
+    //Se crea la imagen de salida
     Mat outputImage(inputImage.rows, inputImage.cols, CV_8UC1);
 
+
+    //Se obtiene el numero de hilos ingresados por el usuario
     int numThreads = atoi(argv[3]);
 
     // Se mide el tiempo de ejecucion
     auto start = chrono::high_resolution_clock::now();
 
-    // Se aplica el filtro para cada hilo
+    // Aplica el filtro en paralelo
     applyFilterParallel(inputImage, outputImage, numThreads);
 
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double> duration = end - start;
 
+    //Se guarda la imagen de salida
     imwrite(argv[2], outputImage);
 
     // Se muestra el tiempo de ejecucion
