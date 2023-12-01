@@ -23,10 +23,10 @@ El enfoque paralelo puede consistir en dividir la imagen en varias partes y asig
 * Utilizar imagenes de prueba de gran tamaño (megas o gigabytes) para apreciar mejor las ventajas de la paralelizacion.
 * Realizar pruebas utilizando difentes numeros de hebras para obtener medidas de rendimiento.
 * No olvidar un archivo README por cada versi´on con las intrucciones para compilar y ejecutar los programas.
-* Para medir tiempo de ejecucion utilice la clase chrono5
+* Para medir tiempo de ejecucion utilice la clase chrono5.
 * La tarea es en parejas.
-* Los programas deben compilar para ser revisados
-** Para las pruebas se recomienda usar la imagen prueba.jpg **
+* Los programas deben compilar para ser revisados.
+**Para las pruebas se recomienda usar la imagen prueba.jpg**
 
 ## Parametros de entrada
 * Nombre imagen a color a procesar.
