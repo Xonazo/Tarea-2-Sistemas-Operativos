@@ -44,26 +44,11 @@ void applyFilterParallel(Mat& inputImage, Mat& outputImage, int numThreads) {
 }
 
 int main(int argc, char** argv) {
-    //Verificacion de los parametros de entrada
-    if (argc != 4) {
-        cerr << "Uso: " << argv[0] << " <imagen_entrada> <imagen_salida> <num_hilos>" << endl;
-        return -1;
-    }
-
-
     //Leer la imagen de entrada
     Mat inputImage = imread(argv[1], IMREAD_COLOR);
 
-
-    //Error si no se puede leer la imagen
-    if (inputImage.empty()) {
-        cerr << "Error al leer la imagen de entrada." << endl;
-        return -1;
-    }
-
     //Se crea la imagen de salida
     Mat outputImage(inputImage.rows, inputImage.cols, CV_8UC1);
-
 
     //Se obtiene el numero de hilos ingresados por el usuario
     int numThreads = atoi(argv[3]);
