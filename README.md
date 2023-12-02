@@ -61,4 +61,4 @@ sudo apt-get install make
 * Para instalar libopencv-dev, se debe escribir y ejecutar el siguiente comando en la terminal:
 ```
 sudo apt-get install libopencv-dev
-```****
+```
